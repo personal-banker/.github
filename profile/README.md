@@ -1,3 +1,4 @@
 # Personal Banker
 
-- [[WIP] Architecture](ARCHITECTURE.md)
+- [[WIP] Architecture proposal](ARCHITECTURE.md)
+- [[WIP] Folder Structure proposal](STRUCTURE.md)
