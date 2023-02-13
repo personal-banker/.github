@@ -1,5 +1,6 @@
 # Project folder structure
 
+```bash
 ├── app
 │   ├── main.dart
 │   ├── shared/
@@ -62,3 +63,4 @@
                 └── sign_in
                     ├── sign_up_store.dart
                     └── sign_in_store.dart
+```
