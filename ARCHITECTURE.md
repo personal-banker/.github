@@ -37,7 +37,6 @@ Pontos a serem levados em consideração antes de introduzir uma nova feature:
 - Dependency Injection: Resolver dependências das classes.
 - Store: Guardar e mudar estados.
 - State pattern: Padrão que auxilia no gerenciamento estados.
-- Adapter: Converter um objeto em outro.
 - Result: Metodos retornarem Success ou Failures.
 
 
