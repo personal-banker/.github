@@ -1,63 +1,72 @@
 # Project folder structure
 
 ```bash
-├── app
-│   ├── main.dart
-│   ├── shared/
-│   │   ├── main_store.dart
-│   │   │   
-│   │   └── themes/
-│   │       └── themes.dart
-│   │
-│   ├── src/
-│   │   ├── data
-│   │   │   ├── services
-│   │   │   │   ├── http_service.dart
-│   │   │   │   └── local_storage_service.dart
-│   │   │   │  
-│   │   │   └── repositories
-│   │   │       └── auth/
-│   │   │           ├── sign_up_repository.dart
-│   │   │           └── sign_in_repository.dart
-│   │   │
-│   │   ├── domain
-│   │   │   ├── interfaces
-│   │   │   │   └── auth_interfaces.dart
-│   │   │   │
-│   │   │   ├── entities
-│   │   │   │   ├── auth/
-│   │   │   │   │   ├── sign_up_entity.dart
-│   │   │   │   └── └── sign_in_entity.dart
-│   │   │   │  
-│   │   │   └── usecases
-│   │   │       └── auth/
-│   │   │           ├── sign_up_entity.dart
-│   │   │           └── sign_in_entity.dart
-│   │   │
-│   │   ├── presentation
-│   │   │   ├── widgets/
-│   │   │   │   └── custom_widget_1.dart
-│   │   │   │
-│   │   │   ├── pages/
-│   │   │   │   ├── sign_up/
-│   │   │   │   │   ├── sign_up_page.dart
-│   │   │   │   │   │  
-│   │   │   │   │   └── widgets/
-│   │   │   │   │       └── custom_widget_2.dart
-│   │   │   │   │
-│   │   │   │   └── sign_in/
-│   │   │   │       ├── sign_in_page.dart
-│   │   │   │       │  
-│   │   │   │       └── widgets/
-│   │   │   │           └── custom_widget_3.dart
-│   │   │   │  
-│   │   │   ├── states/
-│   │   │   |   └── sign_in/
-│   │   │   |       ├── sign_up_state.dart
-│   │   │   |       └── sign_in_state.dart
-│   │   │   |
-│   │   │   └── stores/
-                └── sign_in/
-                    ├── sign_up_store.dart
-                    └── sign_in_store.dart
+├── main.dart
+├── external
+│  ├── database
+│  ├── geolocation
+│  ├── http
+│  ├── local_storage
+│  └── xpto_api
+│    └── xpto_api_service.dart
+├── features
+│  ├── auth
+│  │  ├── auth.dart
+│  │  ├── data
+│  │  │  └── repositories
+│  │  │    ├── sign_in_repository.dart
+│  │  │    └── sign_up_repository.dart
+│  │  ├── domain
+│  │  │  ├── entities
+│  │  │  │  ├── sign_in_entity.dart
+│  │  │  │  └── sign_up_entity.dart
+│  │  │  ├── interfaces
+│  │  │  │  └── interfaces.dart
+│  │  │  └── usecases
+│  │  │    ├── params
+│  │  │    │  ├── sign_in_params.dart
+│  │  │    │  └── sign_up_params.dart
+│  │  │    ├── sign_in_usecase.dart
+│  │  │    └── sign_up_usecase.dart
+│  │  └── presentation
+│  │    ├── sign_in
+│  │    │  ├── sign_in_states.dart
+│  │    │  ├── sign_in_store.dart
+│  │    │  ├── sign_in_view.dart
+│  │    │  └── widgets
+│  │    ├── sign_up
+│  │    │  ├── sign_up_states.dart
+│  │    │  ├── sign_up_store.dart
+│  │    │  └── sign_up_view.dart
+│  │    └── widgets
+│  └── common
+│    ├── common.dart
+│    ├── data
+│    │  └── repositories
+│    │    ├── database_repository.dart
+│    │    ├── geolocation_repository.dart
+│    │    └── local_storage_repository.dart
+│    ├── domain
+│    │  ├── interfaces
+│    │  │  └── interfaces.dart
+│    │  └── usecases
+│    │    ├── database_usecase.dart
+│    │    ├── geolocation_usecase.dart
+│    │    └── local_storage_usecase.dart
+│    └── presentation
+│      ├── base_view_model.dart
+│      ├── base_view.dart
+│      ├── loading_view.dart
+│      └── widgets
+│        └── xpto_custom_widget.dart
+├── setup
+│  ├── routes
+│  └── themes
+└── shared
+  ├── constants
+  ├── types
+  │  ├── failure.dart
+  │  └── result.dart
+  └── utils
+    └── validators
 ```

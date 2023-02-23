@@ -6,23 +6,38 @@
 - Descrever os critérios de desenvolvimento de software e qualidade de código esperados.
 - Catalogar patterns e packages a serem utilizados.
 
-## Regras iniciais
+## Regras 
 
-Pontos a serem levados em consideração antes de introduzir uma nova feature:
-
-- Todo projeto precisará respeitar as regras de Lint escritas no pacote flutterando-analysis.
-- Esse projeto deve ter cobertura mínima de testes de no mínimo 70%.
-- Camadas globais devem ter um lugar específico na aplicação, por tanto, devem estar na pasta Shared.
-- Além da pasta Shared, o projeto será divido em Data, Domain e Presentation
-  - Data: responsável pelos acessos à infraestrutura, como API's, bancos de dados, armazenamento local, etc.
-  - Domain: representação do domínio com as entidades, casos de uso e das abstrações a serem implementadas na aplicação
-  - Presentation: camada visual aplicação com as pages, stores e states.
-- A separação de responsabilidades entre as camadas deve ser mantida.
-- Todos os designs patterns usados no projeto devem estar listados na sessão Design Patterns desse documento.
-- Packages e plugins novos só poderão ser usados nos projetos após avaliação e aprovação de toda equipe responsável pelo projeto.
-- Atualizações no modelo de domínio só poderão ser aceitas se primeiro for adicionada nesse documento e aprovado por todos os envolvidos no projeto.
+- Designs patterns usados no projeto devem estar listados na sessão Design Patterns desse documento.
+- Packages usados no projeto devem estar listados na sessão Packages desse documento.
+- As entidades e casos de uso devem ser criadas e mantidas conforme às sessões `Entidades` e `Casos de Uso` desse documento.
+- Cobertura mínima de testes (70%) e regras de lint serão checados pelo CI à cada Pull Request, aceitando apenas alterações que atendam os requisitos.
 - Não é permitido ter uma classe concreta como dependência de uma camada. Só será aceita coesão com classes abstratas ou interfaces, exceto Stores.
 - Stores não devem ter regras de negócio, mas sim ser o elo entre a camada de apresentação e o domínio.
+- Este documento precede ao código, se existir a necessidade de alterar alguma das regras ou contratos descritos deve-se:
+  - Debater o assunto com os envolvidos no projeto
+  - Obter aceite para a alteração em questão
+  - Modificar este documento registrando o novo cenário
+  - Implementar no código
+
+## Estrutura da aplicação
+
+- Camadas globais da aplicação, como constantes e utilitários, devem ficar na pasta `app/shared`.
+- Itens referentes à configuração da aplicação, como temas e rotas, devem ficar na pasta `app/setup`.
+- Packages que possibilitam acesso à itens externos à aplicação devem ser encapsulados e disponibilizados em serviços na pasta `app/external`
+  - Ex 1: Criar o `httpService` que encapsula o package `http`.
+  - Ex 2: Criar o `localStorageService` que encapsula algum package de armazenamento local.
+  - Ex 3: Criar o `xptoApiService` que utilizará o `httpService` para acessar uma api externa chamada `Xpto`
+- Seguindo o conceito de `feature first`, cada feature será uma pasta em `app/features`
+- Cada feature é dividida em Data, Domain e Presentation
+  - Data: acesso à infraestrutura previamente encapsulada pelos serviços da pasta `app/external`.
+  - Domain: representação do domínio com as entidades, casos de uso e das abstrações a serem implementadas.
+  - Presentation: camada visual aplicação com as pages, stores e states.
+- Features devem ser independentes entre si tanto quanto possível, para controlar isto um arquivo na raíz de cada feature expõem quais itens podem ser exportados.
+  - Ex: A feature `auth` possui a regra de `sign_in` e expõem a entidade `sign_in_entity` no arquivo `app/features/auth/auth.dart`.
+- Regras, entidades, repositórios, etc, que sejam comuns entre features também podem ser criadas na feature `common`.
+- A relação entre features e pages não é 1:1 necessáriamente, uma feature é uma sessão da aplicação que tem funções relacionadas
+  - Ex: A feature de `auth` possui as paginas de `sign_out`, `sign_in`, `update_password`, etc...
 
 
 ## Entidades
@@ -50,4 +65,3 @@ Pontos a serem levados em consideração antes de introduzir uma nova feature:
 - [get_it](https://pub.dev/packages/get_it): Registro e localização de dependências.
 - [mocktail](https://pub.dev/packages/mocktail): Para testes de unidade.
 - [realm](https://pub.dev/packages/realm): Base de dados local.
-- [result_dart](https://pub.dev/packages/result_dart): Retorno múltiplo no formato Failure e Success.
